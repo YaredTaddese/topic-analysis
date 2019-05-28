@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="https://singularitynet.io/" class="brand-logo">
+                <img width="150" class="responsive-img" style="padding: 3px;"
+                    src="https://singularitynet.io/wp-content/uploads/2018/05/singularityNET.png"
+                    alt="singularityNET logo">
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="https://github.com/singnet/topic-analysis">Github</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="sidenav">
+                <li><a href="https://github.com/singnet/topic-analysis">Github</a></li>
+            </ul>
+            <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+
+            <h1 class="header center light-blue-text lighten-1" style="margin-bottom: 0">
+                Topic Analysis Service
+            </h1>
+            <div class="row center">
+                <h6 class="col s12 light">
+                    A singularityNET service that analyses given text to find relevant topics
+                </h6>
+            </div>
+            <div class="row center">
+                <h5 class="header col s12 light">
+                    Status for handle: <i>{{ data.get('handle') }}</i>
+                </h5>
+
+                {% if data.get('error') %}
+                <h5 class="header col s12 light red-text text-lighten-1">
+                    <i class="medium material-icons">error</i>
+                    <br>
+                    {{ data.get('error') }}
+                </h5>
+                {% else %}
+                <h5 class="header col s12 light">
+                    {{ data.get('progress_step') }}/4
+                    {{ data.get('progress_text') }}
+                </h5>
+                {% if data.get('progress_step') != 4 %}
+                    <div class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+                {% else %}
+                    <h5 class="header col s12 light green-text text-lighten-1">
+                        <i class="medium material-icons">done</i>
+                    </h5>
+                {% endif %}
+                {% endif %}
+
+            </div>
+
+            {% if data.get('progress_step') == 4 %}
+            <div class="row center">
+                <h6 class="header col s12 left-align">
+                    Analysis Result for handle: <i>{{ data.get('handle') }}</i>
+                </h6>
+                <p class="col s2 right-align">
+                    Topics Extracted
+                </p>
+                <p class="col s10 light left-align">
+                    {{ data['topics'] }}
+                </p>
+                <p class="col s2 right-align">
+                        Total time in minutes
+                </p>
+                <p class="col s10 light left-align">
+                    {{ data['total_running_time_in_minutes'] }}
+                </p>
+            </div>
+            {% endif %}
+
+            <div class="row center">
+                <h6 class="header col s12 left-align">
+                    Specified Inputs for handle: <i>{{ data.get('handle') }}</i>
+                </h6>
+                <p class="col s2 right-align">
+                    Input Text
+                </p>
+                <p class="col s10 light left-align truncate">
+                    Toward Democratic, Lawful Citizenship for AIs, Robots, and Corporations
+
+                    Dr. Ben Goertzel, CEO of SingularityNET, shares his thoughts about the AI Citizenship Test
+
+                    I am writing this on a plane flying away from Malta, where I just spoke about SingularityNET at the
+                    Malta Blockchain Summit.
+
+                    It was my first time on Malta, and after the event, I took the afternoon to explore some of the
+                    elegant, quaint, ancient neighborhoods of the island.
+
+                    Walking through medieval alleyways by the rocky coast, I felt an ironic contrast between my elegant
+                    surroundings and the main reason I had decided to allocate a couple days from my insanely busy
+                    schedule to this Malta event: not just the conference itself, but also the opportunity to meet with
+                    the top levels of the Malta government to discuss the enablement of Maltese citizenship for AIs,
+                    robots and automated corporations.
+
+                    The folks who had built the stone walls lining the narrow Maltese roads, still standing strong
+                    centuries later, had probably not foreseen their blue-wave-lapped island becoming a nexus of
+                    thinking at the intersection of general intelligence theory, cryptography, distributed systems, and
+                    advanced legal theory.
+
+                    The Hanson Robot Sophia, with whose development I've been intimately involved via my role as Chief
+                    Scientist of Hanson Robotics, was granted citizenship of Saudi Arabia this year. This was an
+                    exciting landmark event, however, its significance is muddled a bit by the fact that Saudi Arabia is
+                    not governed by rule of law in the modern sense.
+
+                    In a nation governed by rule of law, citizenship has a clearly defined meaning with rights and
+                    responsibilities relatively straightforwardly derivable from written legal documents using modern
+                    analytical logic (admittedly with some measure of quasi-subjective interpretation via case law).
+
+                    Saudi Arabian citizenship also has a real meaning, but it's a different sort of meaning — derivable
+                    from various historical Islamic writings (the Quran, the hadiths, etc.) based on deep contextual
+                    interpretation by modern and historical Islamic figures. This is a species of legal interpretation
+                    that is understood rather poorly by myself personally, and one that is less easily comprehensible by
+                    current AIs.
+
+                    I'm aware that affiliation with Saudi Arabia in any sense has become controversial in recent weeks
+                    due to the apparent murder of Jamal Khashoggi.
+                </p>
+
+                <p class="col s2 right-align">
+                    Max Iter
+                </p>
+                <p class="col s10 light left-align">22</p>
+
+            </div>
+            <br><br>
+
+        </div>
+    </div>
+
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+
+</html>
